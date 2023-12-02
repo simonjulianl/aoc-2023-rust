@@ -9,4 +9,4 @@ edition = "2021"
 
 [[bin]]
 name = "rustplayground"
-path = "main.rs"
+path = "day2/main.rs"
