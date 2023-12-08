@@ -29,7 +29,6 @@ fn main() {
         }
     }
 
-    let mut ans = 0;
     let mut infinite_cycle = direction.chars().cycle();
 
     // part 1
@@ -37,20 +36,15 @@ fn main() {
     // let destination = "ZZZ";
 
     // part 2
-    let current: Vec<&str> = map
-        .keys()
-        .filter(|s| s.ends_with('A'))
-        .cloned()
-        .collect();
+    let current: Vec<&str> = map.keys().filter(|s| s.ends_with('A')).cloned().collect();
 
     // println!("{:?}", current);
 
     let ans: i64 = current
         .iter()
         .map(|s| get_single_ans(&mut map, &mut infinite_cycle, s))
-        .fold(1, |acc, num| lcm(acc, num));
+        .fold(1, lcm);
     println!("{:?}", ans);
-
 
     // attempt 1 brute force
     // let answer = loop {
@@ -90,7 +84,7 @@ fn get_single_ans(
     loop {
         ans += 1;
         let current_char = infinite_cycle.next().unwrap();
-        curr = get_next(&current_char, &curr);
+        curr = get_next(&current_char, curr);
 
         if curr.ends_with('Z') {
             break ans;
