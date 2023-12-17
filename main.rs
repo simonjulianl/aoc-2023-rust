@@ -150,7 +150,7 @@ fn main() {
                 };
 
                 if !distance.contains_key(&new_node) || next_cost < *distance.get(&new_node).unwrap() {
-                    let negated_cost = next_cost as i64 * -1;
+                    let negated_cost = -(next_cost as i64);
                     pq.push((negated_cost, new_node));
                     distance.insert(new_node, next_cost as usize);
                 }
